@@ -14,27 +14,14 @@ const streamKey = "FB-645825988326321-0-Ab07EDmP75GhzAC0Kj-vVj3T";
 const STREAM_DURATION = 7.9 * 60 * 60 * 1000;
 
 function startFacebookLive() {
-  const ffmpeg = spawn('ffmpeg', [
-  "-re",
-  "-i", videoURL,
-  "-r", "30", 
-  "-c:v", "libx264",
-  "-preset", "veryfast",
-  "-tune", "zerolatency",
-  "-profile:v", "high",
-  "-level", "3.1",
-  "-b:v", "4000k",
-  "-maxrate", "4000k",
-  "-bufsize", "8000k",
-  "-g", "60",
-  "-keyint_min", "60",
-  "-sc_threshold", "0",
-  "-pix_fmt", "yuv420p",
-  "-c:a", "aac",
-  "-b:a", "128k",
-  "-ar", "48000",
-  "-ac", "2",
-  "-f", "flv",
+    const ffmpeg = spawn('ffmpeg', [
+  '-i', videoURL,
+  '-c:v', 'libx264',
+  '-preset', 'fast',
+  '-b:v', '1500k',
+  '-c:a', 'aac',
+  '-b:a', '128k',
+  '-f', 'flv',
   `${streamURL}${streamKey}`
 ]);
 
