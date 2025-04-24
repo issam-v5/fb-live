@@ -14,14 +14,27 @@ const streamKey = "FB-645843244991262-0-Ab3EJox7oymiDfjU5soL5qvP";
 const STREAM_DURATION = 7.9 * 60 * 60 * 1000;
 
 function startFacebookLive() {
-    const ffmpeg = spawn('ffmpeg', [
+    
+const ffmpeg = spawn('ffmpeg', [
   '-re',
   '-i', videoURL,
+
+  // إعدادات الفيديو
   '-c:v', 'libx264',
-  '-preset', 'fast',
-  '-b:v', '1500k',
+  '-preset', 'veryfast',
+  '-tune', 'zerolatency',
+  '-b:v', '2500k',
+  '-maxrate', '2500k',
+  '-bufsize', '5000k',
+  '-g', '50',
+
+  // إعدادات الصوت
   '-c:a', 'aac',
   '-b:a', '128k',
+  '-ac', '2',
+  '-ar', '44100',
+
+  // الإخراج
   '-f', 'flv',
   `${streamURL}${streamKey}`
 ]);
