@@ -10,7 +10,7 @@ app.listen(3000);
 
 const videoURL = "https://live.kwikmotion.com/sharjahtvquranlive/shqurantv.smil//sharjahtvquranpublish/shqurantv_source/chunks.m3u8";
 const streamURL = "rtmps://live-api-s.facebook.com:443/rtmp/";
-const streamKey = "FB-645820384993548-0-Ab34avFge1A0EnxCkTxm341m";
+const streamKey = "FB-645825988326321-0-Ab07EDmP75GhzAC0Kj-vVj3T";
 const STREAM_DURATION = 7.9 * 60 * 60 * 1000;
 
 function startFacebookLive() {
