@@ -15,6 +15,7 @@ const STREAM_DURATION = 7.9 * 60 * 60 * 1000;
 
 function startFacebookLive() {
     const ffmpeg = spawn('ffmpeg', [
+  '-re',
   '-i', videoURL,
   '-c:v', 'libx264',
   '-preset', 'fast',
