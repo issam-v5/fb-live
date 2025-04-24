@@ -17,6 +17,7 @@ function startFacebookLive() {
   const ffmpeg = spawn('ffmpeg', [
   "-re",
   "-i", videoURL,
+  "-r", "30", 
   "-c:v", "libx264",
   "-preset", "veryfast",
   "-tune", "zerolatency",
