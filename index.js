@@ -1,5 +1,4 @@
 const { spawn } = require("child_process");
-const ffmpegPath = require("ffmpeg-static");
 const express = require('express');
 const app = express();
 
@@ -9,13 +8,13 @@ app.get('/', (req, res) => {
 
 app.listen(3000);
 
-const videoURL = "https://shls-mbc3-prod-dub.shahid.net/out/v1/d5bbe570e1514d3d9a142657d33d85e6/index.m3u8";
+const videoURL = "https://live.kwikmotion.com/sharjahtvquranlive/shqurantv.smil//sharjahtvquranpublish/shqurantv_source/chunks.m3u8";
 const streamURL = "rtmps://live-api-s.facebook.com:443/rtmp/";
 const streamKey = "FB-645257651716488-0-Ab0gHDGYrJeWIgVv02Nj8c5B";
 const STREAM_DURATION = 7.9 * 60 * 60 * 1000;
 
 function startFacebookLive() {
-  const ffmpeg = spawn(ffmpegPath, [
+  const ffmpeg = spawn('ffmpeg', [
     "-re",
     "-i", videoURL,
     "-c:v", "libx264",
