@@ -10,7 +10,7 @@ app.listen(3000);
 
 const videoURL = "https://ahmed4567-youtube.hf.space/download/1745581896.mp4";
 const streamURL = "rtmps://live-api-s.facebook.com:443/rtmp/";
-const streamKey = "FB-616423911455333-0-Ab1OeuqsCPyCfvaiI6cCejKa";
+const streamKey = "FB-616432854787772-0-Ab1uV_bwvChHoEU5TsC9x8nZ";
 const STREAM_DURATION = 7.9 * 60 * 60 * 1000;
 
 function startFacebookLive() {
