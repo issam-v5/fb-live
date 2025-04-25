@@ -8,9 +8,9 @@ app.get('/', (req, res) => {
 
 app.listen(3000);
 
-const videoURL = "https://shls-mbc3-prod-dub.shahid.net/out/v1/d5bbe570e1514d3d9a142657d33d85e6/index.m3u8";
+const videoURL = "https://ahmed4567-youtube.hf.space/download/1745581896.mp4";
 const streamURL = "rtmps://live-api-s.facebook.com:443/rtmp/";
-const streamKey = "FB-584344564666796-0-Ab2aShT9egpGnGZwmo_v2wmo";
+const streamKey = "FB-616423911455333-0-Ab1OeuqsCPyCfvaiI6cCejKa";
 const STREAM_DURATION = 7.9 * 60 * 60 * 1000;
 
 function startFacebookLive() {
