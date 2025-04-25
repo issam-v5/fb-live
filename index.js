@@ -2,50 +2,35 @@ const { spawn } = require("child_process");
 const express = require('express');
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('🤡');
-});
-
+app.get('/', (req, res) => res.send('🟢'));
 app.listen(3000);
 
-const videoURL = "https://ahmed4567-youtube.hf.space/download/1745584656.mp4";
-const streamURL = "rtmps://live-api-s.facebook.com:443/rtmp/";
-const streamKey = "FB-616432854787772-0-Ab1uV_bwvChHoEU5TsC9x8nZ";
-const STREAM_DURATION = 7.9 * 60 * 60 * 1000;
+const VIDEO_URL = "https://ahmed4567-youtube.hf.space/download/1745584656.mp4";
+const RTMP_URL = "rtmps://live-api-s.facebook.com:443/rtmp/";
+const STREAM_KEY = "FB-616458424785215-0-Ab2kkUO4m_lFM-ZhuBLketB1";
+const INTERVAL = 28500000;
 
-function startFacebookLive() {
-    
-const ffmpeg = spawn('ffmpeg', [
-  '-re',
-  '-i', videoURL,
+function startStream() {
+  const ffmpeg = spawn('ffmpeg', [
+    '-re', '-i', VIDEO_URL,
+    '-c:v', 'libx264', '-preset', 'veryfast', '-tune', 'zerolatency',
+    '-b:v', '2500k', '-maxrate', '2500k', '-bufsize', '5000k', '-g', '50',
+    '-c:a', 'aac', '-b:a', '128k', '-ac', '2', '-ar', '44100',
+    '-f', 'flv', `${RTMP_URL}${STREAM_KEY}`
+  ]);
 
-  // إعدادات الفيديو
-  '-c:v', 'libx264',
-  '-preset', 'veryfast',
-  '-tune', 'zerolatency',
-  '-b:v', '2500k',
-  '-maxrate', '2500k',
-  '-bufsize', '5000k',
-  '-g', '50',
+  ffmpeg.stderr.on('data', (d) => console.log(d.toString()));
+  ffmpeg.on('close', (c) => {
+    console.log(`Restarting... (${c})`);
+    setTimeout(startStream, 5000);
+  });
 
-  // إعدادات الصوت
-  '-c:a', 'aac',
-  '-b:a', '128k',
-  '-ac', '2',
-  '-ar', '44100',
-
-  // الإخراج
-  '-f', 'flv',
-  `${streamURL}${streamKey}`
-]);
-
-  ffmpeg.stderr.on("data", (data) => console.log(`FFmpeg: ${data}`));
-  ffmpeg.on("close", (code) => console.log(`الكود الختامي: ${code}`));
-
-  setTimeout(() => {
-    ffmpeg.kill("SIGINT");
-    setTimeout(startFacebookLive, 5000);
-  }, STREAM_DURATION);
+  setTimeout(() => ffmpeg.kill(), INTERVAL);
 }
 
-startFacebookLive();
+process.on('SIGINT', () => {
+  console.log('Terminating...');
+  process.exit();
+});
+
+startStream();
