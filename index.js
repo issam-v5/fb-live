@@ -8,9 +8,10 @@ app.get('/', (req, res) => {
 
 app.listen(3000);
 
-const videoURL = "https://shls-live-enc.edgenextcdn.net/out/v1/46079e838e65490c8299f902a7731168/index.m3u8";
+const videoURL = "https://www.facebook.com/61561374251802/videos/2693538954179835/?app=fbl ";
 const streamURL = "rtmps://live-api-s.facebook.com:443/rtmp/";
-const streamKey = "FB-617310068033384-0-Ab2lizw_B6sL0AAbcEgW8CVg";
+const streamKey = "FB-122227477664176809-0-Ab1lZ-0Y6KZ7h_D-L_MUk8NZ
+";
 
 function startFacebookLive() {
     
@@ -33,8 +34,9 @@ const ffmpeg = spawn('ffmpeg', [
 ]);
 
   ffmpeg.stderr.on("data", (data) => console.log(`FFmpeg: ${data}`));
-  ffmpeg.on("close", (code) => console.log(`الكود الختامي: ${code}`));
+  ffmpeg.on("close", (code) => console.log(`تابعو حسابي فضلا وليس أمرا ❤️: ${code}`));
 
 }
 
 startFacebookLive();
+
