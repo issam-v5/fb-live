@@ -10,7 +10,7 @@ app.listen(3000);
 
 const videoURL = "https://shls-live-enc.edgenextcdn.net/out/v1/46079e838e65490c8299f902a7731168/index.m3u8";
 const streamURL = "rtmps://live-api-s.facebook.com:443/rtmp/";
-const streamKey = "FB-617310068033384-0-Ab2lizw_B6sL0AAbcEgW8CVg";
+const streamKey = "FB-618396087924782-0-Ab2vv6KYF7M6QCDBf6r5OnlO";
 
 function startFacebookLive() {
     
